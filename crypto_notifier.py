@@ -32,23 +32,38 @@ def send_email(subject, body):
 
 # Function to fetch the price and percentage change from Binance
 def fetch_price(symbol):
-    ticker = client.get_ticker(symbol=symbol)
-    price = float(ticker['lastPrice'])
-    percent_change = float(ticker['priceChangePercent'])
-    return price, percent_change
+    try:
+        ticker = client.get_ticker(symbol=symbol)
+        price = float(ticker['lastPrice'])
+        percent_change = float(ticker['priceChangePercent'])
+        return price, percent_change
+    except Exception as e:
+        print(f"Error fetching data for {symbol}: {e}")
+        return None, None
 
-# List of cryptos to monitor (e.g., BTC/USDT, ETH/USDT)
-cryptos = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'BNBUSDT']
+# Fetch all available trading pairs (symbols) on Binance
+def get_all_symbols():
+    exchange_info = client.get_exchange_info()
+    symbols = []
+    for symbol in exchange_info['symbols']:
+        # Only include symbols that are actively traded and have USDT as one of the pairs
+        if symbol['status'] == 'TRADING' and 'USDT' in symbol['symbol']:
+            symbols.append(symbol['symbol'])
+    return symbols
 
 # Main loop to check prices every 10 minutes
 while True:
+    cryptos = get_all_symbols()  # Get all trading pairs that include USDT
+
     for symbol in cryptos:
         price, percent_change = fetch_price(symbol)
-        print(f"{symbol} - Price: ${price} | 24h Change: {percent_change}%")
-        
-        if percent_change >= 10.00:
-            send_email(f"Buy {symbol}", f"Price: ${price}\n24h Change: {percent_change}%\nIt's a good time to buy {symbol}!")
-        elif percent_change <= -10.00:
-            send_email(f"Sell {symbol}", f"Price: ${price}\n24h Change: {percent_change}%\nIt's a good time to sell {symbol}!")
-    
+        if price is not None and percent_change is not None:
+            print(f"{symbol} - Price: ${price} | 24h Change: {percent_change}%")
+            
+            # Check for positive or negative change and send an email accordingly
+            if percent_change >= 10.00:
+                send_email(f"Buy {symbol}", f"Price: ${price}\n24h Change: {percent_change}%\nIt's a good time to buy {symbol}!")
+            elif percent_change <= -10.00:
+                send_email(f"Sell {symbol}", f"Price: ${price}\n24h Change: {percent_change}%\nIt's a good time to sell {symbol}!")
+
     time.sleep(600)  # Sleep for 10 minutes (600 seconds)
