@@ -12,10 +12,10 @@ API_SECRET = os.getenv('BINANCE_API_SECRET')  # Replace with your actual API Sec
 # Set up the Binance client
 client = Client(API_KEY, API_SECRET)
 
-# Email credentials (can also be set via environment variables for security)
 EMAIL = os.getenv('EMAIL')
 PASSWORD = os.getenv('EMAIL_PASSWORD')
 RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
+
 
 # Function to send email
 def send_email(subject, body):
@@ -54,6 +54,8 @@ def get_all_symbols():
 # Main loop to check prices every 10 minutes
 while True:
     cryptos = get_all_symbols()  # Get all trading pairs that include USDT
+    print({EMAIL})
+    print(f"Using PASSWORD: {'*' * len(PASSWORD) if PASSWORD else 'None'}")
 
     for symbol in cryptos:
         price, percent_change = fetch_price(symbol)
