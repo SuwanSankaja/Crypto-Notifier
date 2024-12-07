@@ -31,5 +31,5 @@ Follow these simple steps to set up Crypto Notifier:
 1. Clone this repo:
 
    ```bash
-   git clone https://github.com/SuwanSankaja/crypto-notifier.git
+   git clone https://github.com/SuwanSankaja/Crypto-Notifier.git
    cd crypto-notifier
