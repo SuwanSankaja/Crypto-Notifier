@@ -8,8 +8,8 @@ Welcome to **Crypto Notifier**, your go-to solution for staying ahead of the cry
 
 - 🔍 **Track USDT Pairs**: Monitors all cryptocurrencies paired with USDT on Binance.
 - 📬 **Email Alerts**: Sends notifications for:
-  - 🚀 Positive changes of **+10%** or more (Buy signals).
-  - 📉 Negative changes of **-10%** or more (Sell signals).
+  - 🚀 Positive changes of **+10%** or more (Daily, Hourly, 24 hour) (Buy signals).
+  - 📉 Negative changes of **-10%** or more (Daily, Hourly, 24 hour) (Sell signals).
 - 🔄 **Automatic Updates**: Continuously checks prices every 10 minutes.
 
 ---
