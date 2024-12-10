@@ -206,6 +206,8 @@ def main():
 
             send_email(summary_subject, summary_body)
             print("Summary email sent.")
+            # Log the next iteration time
+            print(f"Next iteration scheduled at {next_interval.strftime('%Y-%m-%d %H:%M:%S')} " f"(in {sleep_duration / 60:.2f} minutes).")
             print(coin_data)
             next_interval = now + timedelta(minutes=30 - (now.minute % 30), seconds=-now.second, microseconds=-now.microsecond)
             sleep_duration = (next_interval - datetime.now(timezone)).total_seconds()
