@@ -10,7 +10,7 @@ Welcome to **Crypto Notifier**, your go-to solution for staying ahead of the cry
 - 📬 **Email Alerts**: Sends notifications for:
   - 🚀 Positive changes of **+10%** or more (Daily, Hourly, 24 hour) (Buy signals).
   - 📉 Negative changes of **-10%** or more (Daily, Hourly, 24 hour) (Sell signals).
-- 🔄 **Automatic Updates**: Continuously checks prices every 10 minutes.
+- 🔄 **Automatic Updates**: Continuously checks prices every 30 minutes.
 
 ---
 
