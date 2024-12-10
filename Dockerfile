@@ -15,3 +15,4 @@ EXPOSE 8080
 
 # Command to run the Python script
 CMD ["python", "crypto_notifier.py"]
+# CMD ["python", "historical.py"]

@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   crypto-notifier:
@@ -12,5 +12,6 @@ services:
     #   - "8080:8080"
     # Set the working directory inside the container
     working_dir: /app
+    # command: ["python", "historical.py"]  # Command to run your script
     command: ["python", "crypto_notifier.py"]  # Command to run your script
 
