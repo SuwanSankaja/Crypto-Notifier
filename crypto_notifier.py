@@ -11,8 +11,10 @@ import pytz
 API_KEY = os.getenv('BINANCE_API_KEY')      # Replace with your actual API Key
 API_SECRET = os.getenv('BINANCE_API_SECRET')  # Replace with your actual API Secret
 
-EMAIL = os.getenv('EMAIL')
-PASSWORD = os.getenv('EMAIL_PASSWORD')
+SENDER_EMAIL = os.getenv('SENDER_EMAIL_1')
+SENDER_PASSWORD = os.getenv('SENDER_PASSWORD_1')
+
+
 RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
 
 
@@ -29,14 +31,14 @@ timezone = pytz.timezone('Asia/Kolkata')  # 5:30 timezone
 def send_email(subject, body):
     try:
         msg = MIMEMultipart()
-        msg['From'] = EMAIL
+        msg['From'] = SENDER_EMAIL
         msg['To'] = RECIPIENT_EMAIL
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
 
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(EMAIL, PASSWORD)
-            server.sendmail(EMAIL, RECIPIENT_EMAIL, msg.as_string())
+            server.login(SENDER_EMAIL, SENDER_PASSWORD)
+            server.sendmail(SENDER_EMAIL, RECIPIENT_EMAIL, msg.as_string())
             server.quit()
         print(f"Email sent successfully: {subject}")
     except smtplib.SMTPException as e:
