@@ -11,12 +11,10 @@ import pytz
 API_KEY = os.getenv('BINANCE_API_KEY')      # Replace with your actual API Key
 API_SECRET = os.getenv('BINANCE_API_SECRET')  # Replace with your actual API Secret
 
-SENDER_EMAIL = os.getenv('SENDER_EMAIL_1')
-SENDER_PASSWORD = os.getenv('SENDER_PASSWORD_1')
-
+SENDER_EMAIL = os.getenv('SENDER_EMAIL')
+SENDER_PASSWORD = os.getenv('SENDER_PASSWORD')
 
 RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
-
 
 # Set up the Binance client
 client = Client(API_KEY, API_SECRET)
